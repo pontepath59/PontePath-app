@@ -2,55 +2,143 @@ export default function Home() {
 
   return (
 
-    <div style={{
+    <div
 
-      display: "flex",
+      style={{
 
-      flexDirection: "column",
+        display: "flex",
 
-      alignItems: "center",
+        flexDirection: "column",
 
-      justifyContent: "center",
+        alignItems: "center",
 
-      height: "100vh",
+        justifyContent: "center",
 
-      backgroundColor: "#0a0a0a",
+        minHeight: "100vh",
 
-      color: "white",
+        background: "#0a0a0a",
 
-      fontFamily: "Arial"
+        color: "white",
 
-    }}>
+        fontFamily: "Arial",
 
-      <h1 style={{ color: "gold" }}>PontePath</h1>
+        textAlign: "center",
 
-      <p>Faith. Health. Purpose.</p>
+        padding: 20
 
-      <button
+      }}
 
-        onClick={() => window.location.href = "/dashboard"}
+    >
 
-        style={{
+      <h1 style={{ color: "gold", fontSize: 32 }}>
 
-          marginTop: 20,
+        PontePath
 
-          padding: "12px 20px",
+      </h1>
 
-          backgroundColor: "purple",
+      <p style={{ fontStyle: "italic", color: "#aaa", marginBottom: 10 }}>
 
-          color: "white",
+        Faith. Clarity. Real Conversation.
 
-          border: "none",
+      </p>
 
-          borderRadius: 6
+      <p style={{ maxWidth: 300 }}>
 
-        }}
+        You’re not alone. Talk things through, explore your thoughts,
 
-      >
+        and find clarity — at your pace.
 
-        Get Started
+      </p>
 
-      </button>
+      <div style={{ marginTop: 40 }}>
+
+        <button
+
+          onClick={() => window.location.href = "/ai"}
+
+          style={{
+
+            margin: 10,
+
+            padding: 14,
+
+            background: "#6a0dad",
+
+            color: "white",
+
+            border: "none",
+
+            borderRadius: 8,
+
+            fontSize: 16,
+
+            cursor: "pointer"
+
+          }}
+
+        >
+
+          Talk It Out
+
+        </button>
+
+        <button
+
+          style={{
+
+            margin: 10,
+
+            padding: 14,
+
+            background: "#333",
+
+            color: "white",
+
+            border: "none",
+
+            borderRadius: 8,
+
+            fontSize: 16,
+
+            cursor: "pointer"
+
+          }}
+
+        >
+
+          Reflect & Think
+
+        </button>
+
+        <button
+
+          style={{
+
+            margin: 10,
+
+            padding: 14,
+
+            background: "gold",
+
+            color: "black",
+
+            border: "none",
+
+            borderRadius: 8,
+
+            fontSize: 16,
+
+            cursor: "pointer"
+
+          }}
+
+        >
+
+          Become a Member ($9.99)
+
+        </button>
+
+      </div>
 
     </div>
 
