@@ -14,45 +14,39 @@ export default function Home() {
 
       height: "100vh",
 
-      background: "#0a0a0a",
+      backgroundColor: "#0a0a0a",
 
       color: "white",
 
-      fontFamily: "Arial",
-
-      textAlign: "center"
+      fontFamily: "Arial"
 
     }}>
 
-      <h1 style={{ color: "gold", fontSize: "40px" }}>
+      <h1 style={{ color: "gold" }}>PontePath</h1>
 
-        PontePath
+      <p>Faith. Health. Purpose.</p>
 
-      </h1>
+      <button
 
-      <p style={{ maxWidth: "300px", marginTop: "10px" }}>
+        onClick={() => window.location.href = "/dashboard"}
 
-        Faith. Health. Purpose.
+        style={{
 
-      </p>
+          marginTop: 20,
 
-      <button style={{
+          padding: "12px 20px",
 
-        marginTop: "20px",
+          backgroundColor: "purple",
 
-        padding: "12px 24px",
+          color: "white",
 
-        background: "purple",
+          border: "none",
 
-        border: "none",
+          borderRadius: 6
 
-        borderRadius: "8px",
+        }}
 
-        color: "white",
-
-        fontSize: "16px"
-
-      }}>
+      >
 
         Get Started
 
