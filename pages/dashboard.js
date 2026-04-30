@@ -22,15 +22,85 @@ export default function Dashboard() {
 
       <div style={{ marginTop: 30 }}>
 
-        <button style={{ margin: 10 }}>AI Insights</button>
+        <div style={{ marginTop: 40 }}>
 
-        <button style={{ margin: 10 }}>Goal Tracker</button>
+  <button
 
-        <button style={{ margin: 10 }}>Membership Hub</button>
+    onClick={() => window.location.href = "/ai"}
 
-      </div>
+    style={{
 
-    </div>
+      margin: 10,
+
+      padding: 12,
+
+      background: "purple",
+
+      color: "white",
+
+      border: "none",
+
+      borderRadius: 6
+
+    }}
+
+  >
+
+    Talk it out
+
+  </button>
+
+  <button
+
+    style={{
+
+      margin: 10,
+
+      padding: 12,
+
+      background: "#333",
+
+      color: "white",
+
+      border: "none",
+
+      borderRadius: 6
+
+    }}
+
+  >
+
+    Reflect
+
+  </button>
+
+  <button
+
+    style={{
+
+      margin: 10,
+
+      padding: 12,
+
+      background: "gold",
+
+      color: "black",
+
+      border: "none",
+
+      borderRadius: 6
+
+    }}
+
+  >
+
+    Upgrade ($9.99)
+
+  </button>
+
+</div>
+
+  
 
   );
 
