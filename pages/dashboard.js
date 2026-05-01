@@ -16,91 +16,95 @@ export default function Dashboard() {
 
     }}>
 
-      <h1 style={{ color: "gold" }}>Welcome to PontePath</h1>
+      <h1 style={{ color: "gold" }}>
 
-      <p>Your journey starts here.</p>
+        Your Space
+
+      </h1>
+
+      <p>
+
+        This is your place for clarity, reflection, and real conversation.
+
+      </p>
 
       <div style={{ marginTop: 30 }}>
 
-        <div style={{ marginTop: 40 }}>
+        <button
 
-  <button
+          style={{
 
-    onClick={() => window.location.href = "/ai"}
+            margin: 10,
 
-    style={{
+            padding: 12,
 
-      margin: 10,
+            background: "purple",
 
-      padding: 12,
+            color: "white",
 
-      background: "purple",
+            border: "none",
 
-      color: "white",
+            borderRadius: 6
 
-      border: "none",
+          }}
 
-      borderRadius: 6
+        >
 
-    }}
+          Talk it out
 
-  >
+        </button>
 
-    Talk it out
+        <button
 
-  </button>
+          style={{
 
-  <button
+            margin: 10,
 
-    style={{
+            padding: 12,
 
-      margin: 10,
+            background: "#333",
 
-      padding: 12,
+            color: "white",
 
-      background: "#333",
+            border: "none",
 
-      color: "white",
+            borderRadius: 6
 
-      border: "none",
+          }}
 
-      borderRadius: 6
+        >
 
-    }}
+          Reflect
 
-  >
+        </button>
 
-    Reflect
+        <button
 
-  </button>
+          style={{
 
-  <button
+            margin: 10,
 
-    style={{
+            padding: 12,
 
-      margin: 10,
+            background: "gold",
 
-      padding: 12,
+            color: "black",
 
-      background: "gold",
+            border: "none",
 
-      color: "black",
+            borderRadius: 6
 
-      border: "none",
+          }}
 
-      borderRadius: 6
+        >
 
-    }}
+          Upgrade ($9.99)
 
-  >
+        </button>
 
-    Upgrade ($9.99)
+      </div>
 
-  </button>
-
-</div>
-
-  
+    </div>
 
   );
 
