@@ -4,115 +4,57 @@ export default function AI() {
 
   const [input, setInput] = useState("");
 
-  const [messages, setMessages] = useState([
+  const [messages, setMessages] = useState([]);
 
-    {
+  const sendMessage = async () => {
 
-      role: "assistant",
-
-      content:
-
-        "I’m here with you. You don’t have to carry everything alone. Just speak."
-
-    }
-
-  ]);
-
-  const sendMessage = () => {
-
-    if (!input) return;
+    if (!input.trim()) return;
 
     const userMessage = { role: "user", content: input };
 
-    const reply = generateResponse(input);
+    const res = await fetch("/api/ai", {
 
-    const companionResponse = {
+      method: "POST",
 
-      role: "assistant",
+      headers: {
 
-      content: reply
+        "Content-Type": "application/json",
 
-    };
+      },
 
-    setMessages([...messages, userMessage, companionResponse]);
+      body: JSON.stringify({
+
+        messages: [...messages, userMessage],
+
+      }),
+
+    });
+
+    const data = await res.json();
+
+    setMessages((prev) => [...prev, userMessage, data]);
 
     setInput("");
 
   };
 
-  const generateResponse = (text) => {
-
-    const lower = text.toLowerCase();
-
-    if (lower.includes("cancer") || lower.includes("sick")) {
-
-      return "That’s a lot to take in. I’m here with you… you don’t have to carry it all at once.";
-
-    }
-
-    if (lower.includes("scared") || lower.includes("afraid")) {
-
-      return "That kind of fear is real. Stay with it for a moment… you’re not alone.";
-
-    }
-
-    if (lower.includes("family")) {
-
-      return "Family situations can weigh on you deeply. I hear that.";
-
-    }
-
-    if (lower.includes("lost") || lower.includes("confused")) {
-
-      return "Sometimes clarity comes by slowing down, not forcing answers.";
-
-    }
-
-    if (text.trim().length < 12) {
-
-      return "I hear you. That matters.";
-
-    }
-
-    return "I’m with you. Just take it one thought at a time.";
-
-  };
-
   return (
 
-    <div style={{ background: "#000", color: "white", minHeight: "100vh", padding: 20 }}>
+    <div style={{ padding: 20, color: "white", background: "black", minHeight: "100vh" }}>
+
+      
 
       <h1 style={{ color: "gold" }}>PontePath Companion</h1>
 
-      <p style={{ color: "#ccc" }}>
-
-        Speak freely. You're not being told what to do — just guided toward clarity.
-
-      </p>
-
-      <div>
+      <div style={{ marginTop: 20 }}>
 
         {messages.map((msg, i) => (
 
-          <div
+          <div key={i} style={{ marginBottom: 15 }}>
 
-            key={i}
+            <strong>{msg.role === "user" ? "You:" : "Companion:"}</strong>
 
-            style={{
-
-              background: msg.role === "user" ? "#333" : "#111",
-
-              padding: 12,
-
-              borderRadius: 10,
-
-              marginTop: 10
-
-            }}
-
-          >
-
-            {msg.content}
+            <p>{msg.content}</p>
 
           </div>
 
@@ -120,23 +62,27 @@ export default function AI() {
 
       </div>
 
-      <input
+      <div style={{ marginTop: 20 }}>
 
-        value={input}
+        <input
 
-        onChange={(e) => setInput(e.target.value)}
+          value={input}
 
-        placeholder="Speak your thoughts..."
+          onChange={(e) => setInput(e.target.value)}
 
-        style={{ width: "100%", padding: 10, marginTop: 15 }}
+          placeholder="Speak your thoughts..."
 
-      />
+          style={{ width: "70%", padding: 10 }}
 
-      <button onClick={sendMessage} style={{ marginTop: 10 }}>
+        />
 
-        Talk
+        <button onClick={sendMessage} style={{ padding: 10, marginLeft: 10 }}>
 
-      </button>
+          Talk
+
+        </button>
+
+      </div>
 
     </div>
 
