@@ -2,51 +2,41 @@ export default function Home() {
 
   return (
 
-    <div
+    <div style={{
 
-      style={{
+      display: "flex",
 
-        display: "flex",
+      flexDirection: "column",
 
-        flexDirection: "column",
+      alignItems: "center",
 
-        alignItems: "center",
+      justifyContent: "center",
 
-        justifyContent: "center",
+      minHeight: "100vh",
 
-        minHeight: "100vh",
+      background: "#0a0a0a",
 
-        background: "#0a0a0a",
+      color: "white",
 
-        color: "white",
+      fontFamily: "Arial",
 
-        fontFamily: "Arial",
+      textAlign: "center"
 
-        textAlign: "center",
+    }}>
 
-        padding: 20
-
-      }}
-
-    >
-
-      <h1 style={{ color: "gold", fontSize: 32 }}>
+      <h1 style={{ color: "gold" }}>
 
         PontePath
 
       </h1>
 
-      <p style={{ fontStyle: "italic", color: "#aaa", marginBottom: 10 }}>
+      <p>
 
-        Faith. Clarity. Real Conversation.
+        A place for clarity, guidance, and real conversation.
 
-      </p>
+        <br />
 
-      <p style={{ maxWidth: 300 }}>
-
-        You’re not alone. Talk things through, explore your thoughts,
-
-        and find clarity — at your pace.
+        You’re not alone — think, reflect, and talk it out.
 
       </p>
 
@@ -60,25 +50,21 @@ export default function Home() {
 
             margin: 10,
 
-            padding: 14,
+            padding: 12,
 
-            background: "#6a0dad",
+            background: "purple",
 
             color: "white",
 
             border: "none",
 
-            borderRadius: 8,
-
-            fontSize: 16,
-
-            cursor: "pointer"
+            borderRadius: 6
 
           }}
 
         >
 
-          Talk It Out
+          Talk it out
 
         </button>
 
@@ -88,7 +74,7 @@ export default function Home() {
 
             margin: 10,
 
-            padding: 14,
+            padding: 12,
 
             background: "#333",
 
@@ -96,17 +82,13 @@ export default function Home() {
 
             border: "none",
 
-            borderRadius: 8,
-
-            fontSize: 16,
-
-            cursor: "pointer"
+            borderRadius: 6
 
           }}
 
         >
 
-          Reflect & Think
+          Reflect
 
         </button>
 
@@ -116,7 +98,7 @@ export default function Home() {
 
             margin: 10,
 
-            padding: 14,
+            padding: 12,
 
             background: "gold",
 
@@ -124,17 +106,13 @@ export default function Home() {
 
             border: "none",
 
-            borderRadius: 8,
-
-            fontSize: 16,
-
-            cursor: "pointer"
+            borderRadius: 6
 
           }}
 
         >
 
-          Become a Member ($9.99)
+          Upgrade ($9.99)
 
         </button>
 
