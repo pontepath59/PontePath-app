@@ -32,7 +32,7 @@ export default function AI() {
 
     const data = await res.json();
 
-    setMessages((prev) => [...prev, userMessage, data]);
+    setMessages(prev => [...prev, userMessage, data]);
 
     setInput("");
 
@@ -40,7 +40,7 @@ export default function AI() {
 
   return (
 
-    <div style={{ padding: 20, color: "white", background: "black", minHeight: "100vh" }}>
+    <div style={{ padding: 20, background: "black", color: "white", minHeight: "100vh" }}>
 
       
 
@@ -52,9 +52,13 @@ export default function AI() {
 
           <div key={i} style={{ marginBottom: 15 }}>
 
-            <strong>{msg.role === "user" ? "You:" : "Companion:"}</strong>
+            <div style={{ opacity: 0.7 }}>
 
-            <p>{msg.content}</p>
+              {msg.role === "user" ? "You" : "Companion"}
+
+            </div>
+
+            <div>{msg.content}</div>
 
           </div>
 
