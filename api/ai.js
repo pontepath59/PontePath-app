@@ -10,9 +10,10 @@ export default async function handler(req, res) {
 
   const openai = new OpenAI({
 
-    apiKey: "PASTE_YOUR_API_KEY_HERE"
+  apiKey: "sk-proj-8Zg8tJm7I11S3I3KC8VncVUm..."
 
-  });
+});
+
 
   try {
 
