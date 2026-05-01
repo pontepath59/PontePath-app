@@ -12,7 +12,7 @@ export default function AI() {
 
       content:
 
-        "I'm here with you. You don’t need to have it all figured out. Just say what’s on your mind."
+        "I'm here with you. You don’t need to have it all figured out. Just speak."
 
     }
 
@@ -23,8 +23,6 @@ export default function AI() {
     if (!input) return;
 
     const userMessage = { role: "user", content: input };
-
-    // Simple companion response (no backend, no API)
 
     const companionResponse = {
 
@@ -40,9 +38,9 @@ export default function AI() {
 
   };
 
-  const generateResponse = (text) => {
+  const generateResponse = () => {
 
-    return "I hear you. Take a second with that... what feels most important to you right now?";
+    return "That sounds heavy. I’m here with you. What feels like the hardest part right now?";
 
   };
 
