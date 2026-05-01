@@ -12,7 +12,7 @@ export default function AI() {
 
       content:
 
-        "I'm here with you. You don’t need to have it all figured out. Just speak."
+        "I’m here with you. You don’t have to carry everything alone. Just speak."
 
     }
 
@@ -24,11 +24,13 @@ export default function AI() {
 
     const userMessage = { role: "user", content: input };
 
+    const reply = generateResponse(input);
+
     const companionResponse = {
 
       role: "assistant",
 
-      content: generateResponse(input)
+      content: reply
 
     };
 
@@ -38,9 +40,61 @@ export default function AI() {
 
   };
 
-  const generateResponse = () => {
+  const generateResponse = (text) => {
 
-    return "That sounds heavy. I’m here with you. What feels like the hardest part right now?";
+    const lower = text.toLowerCase();
+
+    // serious / health
+
+    if (lower.includes("cancer") || lower.includes("sick")) {
+
+      return "That’s a lot to take in. Anyone would feel that. I’m here with you… you don’t have to carry it all at once.";
+
+    }
+
+    // fear
+
+    if (lower.includes("scared") || lower.includes("afraid")) {
+
+      return "Yeah… that kind of fear hits deep. Stay with it for a second. You’re not alone in this.";
+
+    }
+
+    // family weight
+
+    if (lower.includes("family")) {
+
+      return "Family situations can sit heavy on you. I can feel that in what you’re saying.";
+
+    }
+
+    // confusion
+
+    if (lower.includes("lost") || lower.includes("confused")) {
+
+      return "When things feel unclear like that, it usually means something inside needs more time, not pressure.";
+
+    }
+
+    // pain
+
+    if (lower.includes("hurt") || lower.includes("pain")) {
+
+      return "That kind of pain doesn’t just show up for no reason. I’m here with you in it.";
+
+    }
+
+    // short replies (like "her life")
+
+    if (text.trim().length < 12) {
+
+      return "Yeah… I hear that. That’s real.";
+
+    }
+
+    // default tone
+
+    return "I hear you. Just stay with it for a second… no need to rush anything.";
 
   };
 
@@ -68,92 +122,10 @@ export default function AI() {
 
       <p style={{ color: "#ccc", marginBottom: 20 }}>
 
-        Speak freely. Think clearly. You’re not being told what to do — just
-
-        guided to see your path more clearly.
+        A place for clarity, guidance, and real conversation. You’re not being told what to do — just helped to see more clearly.
 
       </p>
 
       <div style={{ marginBottom: 20 }}>
 
-        {messages.map((msg, i) => (
-
-          <div
-
-            key={i}
-
-            style={{
-
-              background: msg.role === "user" ? "#333" : "#111",
-
-              padding: 12,
-
-              borderRadius: 10,
-
-              marginBottom: 10
-
-            }}
-
-          >
-
-            {msg.content}
-
-          </div>
-
-        ))}
-
-      </div>
-
-      <input
-
-        value={input}
-
-        onChange={(e) => setInput(e.target.value)}
-
-        placeholder="Say what’s on your mind..."
-
-        style={{
-
-          width: "100%",
-
-          padding: 12,
-
-          borderRadius: 8,
-
-          border: "none",
-
-          marginBottom: 10
-
-        }}
-
-      />
-
-      <button
-
-        onClick={sendMessage}
-
-        style={{
-
-          background: "purple",
-
-          color: "white",
-
-          padding: 12,
-
-          border: "none",
-
-          borderRadius: 8
-
-        }}
-
-      >
-
-        Talk
-
-      </button>
-
-    </div>
-
-  );
-
-}
+        {messages.map((msg,
