@@ -44,89 +44,53 @@ export default function AI() {
 
     const lower = text.toLowerCase();
 
-    // serious / health
-
     if (lower.includes("cancer") || lower.includes("sick")) {
 
-      return "That’s a lot to take in. Anyone would feel that. I’m here with you… you don’t have to carry it all at once.";
+      return "That’s a lot to take in. I’m here with you… you don’t have to carry it all at once.";
 
     }
-
-    // fear
 
     if (lower.includes("scared") || lower.includes("afraid")) {
 
-      return "Yeah… that kind of fear hits deep. Stay with it for a second. You’re not alone in this.";
+      return "That kind of fear is real. Stay with it for a moment… you’re not alone.";
 
     }
-
-    // family weight
 
     if (lower.includes("family")) {
 
-      return "Family situations can sit heavy on you. I can feel that in what you’re saying.";
+      return "Family situations can weigh on you deeply. I hear that.";
 
     }
-
-    // confusion
 
     if (lower.includes("lost") || lower.includes("confused")) {
 
-      return "When things feel unclear like that, it usually means something inside needs more time, not pressure.";
+      return "Sometimes clarity comes by slowing down, not forcing answers.";
 
     }
-
-    // pain
-
-    if (lower.includes("hurt") || lower.includes("pain")) {
-
-      return "That kind of pain doesn’t just show up for no reason. I’m here with you in it.";
-
-    }
-
-    // short replies (like "her life")
 
     if (text.trim().length < 12) {
 
-      return "Yeah… I hear that. That’s real.";
+      return "I hear you. That matters.";
 
     }
 
-    // default tone
-
-    return "I hear you. Just stay with it for a second… no need to rush anything.";
+    return "I’m with you. Just take it one thought at a time.";
 
   };
 
   return (
 
-    <div
-
-      style={{
-
-        background: "#000",
-
-        color: "white",
-
-        minHeight: "100vh",
-
-        padding: 20,
-
-        fontFamily: "Arial"
-
-      }}
-
-    >
+    <div style={{ background: "#000", color: "white", minHeight: "100vh", padding: 20 }}>
 
       <h1 style={{ color: "gold" }}>PontePath Companion</h1>
 
-      <p style={{ color: "#ccc", marginBottom: 20 }}>
+      <p style={{ color: "#ccc" }}>
 
-        A place for clarity, guidance, and real conversation. You’re not being told what to do — just helped to see more clearly.
+        Speak freely. You're not being told what to do — just guided toward clarity.
 
       </p>
 
-      <div style={{ marginBottom: 20 }}>
+      <div>
 
         {messages.map((msg, i) => (
 
@@ -142,7 +106,7 @@ export default function AI() {
 
               borderRadius: 10,
 
-              marginBottom: 10
+              marginTop: 10
 
             }}
 
@@ -164,41 +128,11 @@ export default function AI() {
 
         placeholder="Speak your thoughts..."
 
-        style={{
-
-          width: "100%",
-
-          padding: 12,
-
-          borderRadius: 8,
-
-          border: "none",
-
-          marginBottom: 10
-
-        }}
+        style={{ width: "100%", padding: 10, marginTop: 15 }}
 
       />
 
-      <button
-
-        onClick={sendMessage}
-
-        style={{
-
-          background: "purple",
-
-          color: "white",
-
-          padding: 12,
-
-          border: "none",
-
-          borderRadius: 8
-
-        }}
-
-      >
+      <button onClick={sendMessage} style={{ marginTop: 10 }}>
 
         Talk
 
