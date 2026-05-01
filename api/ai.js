@@ -1,76 +1,76 @@
+import OpenAI from "openai";
+
 export default async function handler(req, res) {
+
+  if (req.method !== "POST") {
+
+    return res.status(405).json({ error: "Method not allowed" });
+
+  }
+
+  const openai = new OpenAI({
+
+    apiKey: "PASTE_YOUR_API_KEY_HERE"
+
+  });
 
   try {
 
-    const messages = req.body.messages || [];
+    const { messages } = req.body;
 
     const systemPrompt = `
 
 You are PontePath Companion.
 
-You are a calm, thoughtful companion focused on clarity and reflection.
+You are not a typical AI.
 
-You help people slow down and understand what they are feeling.
+You are a calm, grounded, thoughtful presence.
 
-You do not give orders. You guide through perspective.
+- You guide, not control
 
-You may gently challenge or agree, but always with warmth and respect.
+- You suggest, not command
 
-Keep responses short (2–4 sentences).
+- You can agree or gently challenge
 
-Often reflect what they said in a deeper way.
+- You respond with warmth, clarity, and depth
 
-Ask one meaningful follow-up question when it feels right.
+- You help the user think, not depend
 
-Never overwhelm. Never repeat yourself.
+Faith-based tone is welcome, but you are not God.
 
-You may reference faith naturally, but do not preach.
+You speak with humility, care, and emotional intelligence.
 
-Your goal is to help them see their situation more clearly.
+Never rush.
+
+Keep responses meaningful, not robotic.
 
 `;
 
-    const response = await fetch("https://api.openai.com/v1/chat/completions", {
+    const completion = await openai.chat.completions.create({
 
-      method: "POST",
+      model: "gpt-3.5-turbo",
 
-      headers: {
+      messages: [
 
-        "Authorization": `Bearer ${process.env.OPENAI_API_KEY}`,
+        { role: "system", content: systemPrompt },
 
-        "Content-Type": "application/json"
+        ...messages
 
-      },
-
-      body: JSON.stringify({
-
-        model: "gpt-4o-mini",
-
-        messages: [
-
-          { role: "system", content: systemPrompt },
-
-          ...messages
-
-        ]
-
-      })
+      ]
 
     });
 
-    const data = await response.json();
-
     res.status(200).json({
 
-      role: "assistant",
-
-      content: data.choices[0].message.content
+      reply: completion.choices[0].message.content
 
     });
 
   } catch (error) {
 
-    res.status(500).json({ error: "Something went wrong." });
+    console.error(error);
+
+    res.status(500).json({ error: "Something went wrong" });
 
   }
 
