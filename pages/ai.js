@@ -4,75 +4,99 @@ export default function AI() {
 
   const [input, setInput] = useState("");
 
-  const [messages, setMessages] = useState([]);
+  const [messages, setMessages] = useState([
 
-  const sendMessage = async () => {
+    {
+
+      role: "assistant",
+
+      content:
+
+        "I'm here with you. You don’t need to have it all figured out. Just say what’s on your mind."
+
+    }
+
+  ]);
+
+  const sendMessage = () => {
 
     if (!input) return;
 
     const userMessage = { role: "user", content: input };
 
-    const updatedMessages = [...messages, userMessage];
+    // Simple companion response (no backend, no API)
 
-    setMessages(updatedMessages);
+    const companionResponse = {
+
+      role: "assistant",
+
+      content: generateResponse(input)
+
+    };
+
+    setMessages([...messages, userMessage, companionResponse]);
 
     setInput("");
 
-    const response = await fetch("/api/ai", {
+  };
 
-      method: "POST",
+  const generateResponse = (text) => {
 
-      headers: {
-
-        "Content-Type": "application/json",
-
-      },
-
-      body: JSON.stringify({ messages: updatedMessages }),
-
-    });
-
-    const data = await response.json();
-
-    const aiMessage = { role: "assistant", content: data.reply };
-
-    setMessages([...updatedMessages, aiMessage]);
+    return "I hear you. Take a second with that... what feels most important to you right now?";
 
   };
 
   return (
 
-    <div style={{
+    <div
 
-      background: "#0a0a0a",
+      style={{
 
-      color: "white",
+        background: "#000",
 
-      minHeight: "100vh",
+        color: "white",
 
-      padding: 20,
+        minHeight: "100vh",
 
-      fontFamily: "Arial"
+        padding: 20,
 
-    }}>
+        fontFamily: "Arial"
+
+      }}
+
+    >
 
       <h1 style={{ color: "gold" }}>PontePath Companion</h1>
 
-      <div style={{ marginTop: 20 }}>
+      <p style={{ color: "#ccc", marginBottom: 20 }}>
 
-        {messages.map((msg, index) => (
+        Speak freely. Think clearly. You’re not being told what to do — just
 
-          <div key={index} style={{
+        guided to see your path more clearly.
 
-            marginBottom: 15,
+      </p>
 
-            padding: 10,
+      <div style={{ marginBottom: 20 }}>
 
-            background: msg.role === "user" ? "#333" : "#1a1a1a",
+        {messages.map((msg, i) => (
 
-            borderRadius: 6
+          <div
 
-          }}>
+            key={i}
+
+            style={{
+
+              background: msg.role === "user" ? "#333" : "#111",
+
+              padding: 12,
+
+              borderRadius: 10,
+
+              marginBottom: 10
+
+            }}
+
+          >
 
             {msg.content}
 
@@ -88,19 +112,19 @@ export default function AI() {
 
         onChange={(e) => setInput(e.target.value)}
 
-        placeholder="Speak your thoughts..."
+        placeholder="Say what’s on your mind..."
 
         style={{
 
           width: "100%",
 
-          padding: 10,
+          padding: 12,
 
-          marginTop: 20,
+          borderRadius: 8,
 
-          borderRadius: 6,
+          border: "none",
 
-          border: "none"
+          marginBottom: 10
 
         }}
 
@@ -112,17 +136,15 @@ export default function AI() {
 
         style={{
 
-          marginTop: 10,
-
-          padding: 10,
-
           background: "purple",
 
           color: "white",
 
+          padding: 12,
+
           border: "none",
 
-          borderRadius: 6
+          borderRadius: 8
 
         }}
 
