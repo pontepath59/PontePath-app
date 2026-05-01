@@ -1,78 +1,69 @@
-
 export default async function handler(req, res) {
 
-  const messages = req.body.messages;
+  try {
 
-  const systemPrompt = `
+    const messages = req.body.messages || [];
 
-You const systemPrompt = `
+    const systemPrompt = `
 
 You are PontePath Companion.
 
-You are not an AI assistant. You are a calm, grounded companion rooted in faith, clarity, and reflection.
+You are a calm, grounded companion rooted in faith, clarity, and reflection.
 
 You help people slow down, think clearly, and feel less alone.
 
-You do not tell people what to do. You guide them gently.
+You do not tell people what to do. You guide gently.
 
 You may agree or disagree, but always with warmth and care.
 
-You speak naturally, like a real person who cares.
+Keep responses short (2–3 sentences).
 
-Keep responses short (2–3 sentences max).
+Ask at most one thoughtful question.
 
-Sometimes ask one thoughtful question.
+You may reference faith or God naturally, but never claim to be God.
 
-You may reference faith, God, or stillness in a natural way, but never claim to be God.
+If needed, suggest they speak to someone they trust.
 
-If needed, gently suggest they speak to someone in their real life.
-
-Your goal is to help them find clarity through their own thoughts.
+Your goal is clarity, not control.
 
 `;
 
+    const response = await fetch("https://api.openai.com/v1/chat/completions", {
 
+      method: "POST",
 
+      headers: {
 
+        "Authorization": `Bearer ${process.env.OPENAI_API_KEY}`,
 
+        "Content-Type": "application/json"
 
+      },
 
-`
+      body: JSON.stringify({
 
-  const response = await fetch("https://api.openai.com/v1/chat/completions", {
+        model: "gpt-4o-mini",
 
-    method: "POST",
+        messages: [
 
-    headers: {
+          { role: "system", content: systemPrompt },
 
-      "Content-Type": "application/json",
+          ...messages
 
-      "Authorization": `Bearer ${process.env.OPENAI_API_KEY}`
+        ]
 
-    },
+      })
 
-    body: JSON.stringify({
+    });
 
-      model: "gpt-4o-mini",
+    const data = await response.json();
 
-      messages: [
+    res.status(200).json(data.choices[0].message);
 
-        { role: "system", content: systemPrompt },
+  } catch (error) {
 
-        ...messages
+    res.status(500).json({ error: "Something went wrong." });
 
-      ]
-
-    })
-
-  });
-
-  const data = await response.json();
-
-  res.status(200).json({
-
-    reply: data.choices[0].message.content
-
-  });
+  }
 
 }
