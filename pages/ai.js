@@ -1,52 +1,42 @@
 import { useState } from "react";
 
-export default function Companion() {
+export default function AI() {
 
   const [input, setInput] = useState("");
 
   const [messages, setMessages] = useState([]);
 
-  const handleSend = () => {
+  const sendMessage = async () => {
 
     if (!input) return;
 
-    const userMessage = { role: "user", text: input };
+    const userMessage = { role: "user", content: input };
 
-    // Companion-style response (foundation)
+    const updatedMessages = [...messages, userMessage];
 
-    const response = {
-
-      role: "companion",
-
-      text: generateResponse(input)
-
-    };
-
-    setMessages([...messages, userMessage, response]);
+    setMessages(updatedMessages);
 
     setInput("");
 
-  };
+    const response = await fetch("/api/ai", {
 
-  const generateResponse = (text) => {
+      method: "POST",
 
-    return `I hear you. It sounds like you're thinking about "${text}".
+      headers: {
 
-Let’s slow it down for a second.
+        "Content-Type": "application/json",
 
-What do you feel is really at the center of this for you?
+      },
 
-One way to look at it could be this:
+      body: JSON.stringify({ messages: updatedMessages }),
 
-- There may be an opportunity here you haven’t fully explored
+    });
 
-- But there could also be something you’re unsure about
+    const data = await response.json();
 
-I may not fully agree or disagree yet — I’d want to understand more.
+    const aiMessage = { role: "assistant", content: data.reply };
 
-From a faith perspective, sometimes clarity comes when we sit with it, not rush it.
-
-What direction are you leaning toward right now?`;
+    setMessages([...updatedMessages, aiMessage]);
 
   };
 
@@ -54,13 +44,13 @@ What direction are you leaning toward right now?`;
 
     <div style={{
 
-      padding: 20,
-
       background: "#0a0a0a",
 
       color: "white",
 
       minHeight: "100vh",
+
+      padding: 20,
 
       fontFamily: "Arial"
 
@@ -68,41 +58,23 @@ What direction are you leaning toward right now?`;
 
       <h1 style={{ color: "gold" }}>PontePath Companion</h1>
 
-      <p style={{ marginBottom: 20 }}>
+      <div style={{ marginTop: 20 }}>
 
-        Speak freely. Think clearly. You’re not being told what to do —
+        {messages.map((msg, index) => (
 
-        just guided to see your path more clearly.
+          <div key={index} style={{
 
-      </p>
+            marginBottom: 15,
 
-      <div style={{ marginBottom: 20 }}>
+            padding: 10,
 
-        {messages.map((msg, i) => (
+            background: msg.role === "user" ? "#333" : "#1a1a1a",
 
-          <div key={i} style={{
-
-            marginBottom: 10,
-
-            textAlign: msg.role === "user" ? "right" : "left"
+            borderRadius: 6
 
           }}>
 
-            <div style={{
-
-              display: "inline-block",
-
-              padding: 10,
-
-              borderRadius: 10,
-
-              background: msg.role === "user" ? "#333" : "#222"
-
-            }}>
-
-              {msg.text}
-
-            </div>
+            {msg.content}
 
           </div>
 
@@ -124,27 +96,37 @@ What direction are you leaning toward right now?`;
 
           padding: 10,
 
-          borderRadius: 5,
+          marginTop: 20,
 
-          marginBottom: 10
+          borderRadius: 6,
+
+          border: "none"
 
         }}
 
       />
 
-      <button onClick={handleSend} style={{
+      <button
 
-        padding: 10,
+        onClick={sendMessage}
 
-        background: "purple",
+        style={{
 
-        color: "white",
+          marginTop: 10,
 
-        border: "none",
+          padding: 10,
 
-        borderRadius: 5
+          background: "purple",
 
-      }}>
+          color: "white",
+
+          border: "none",
+
+          borderRadius: 6
+
+        }}
+
+      >
 
         Talk
 
