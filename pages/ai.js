@@ -128,4 +128,84 @@ export default function AI() {
 
       <div style={{ marginBottom: 20 }}>
 
-        {messages.map((msg,
+        {messages.map((msg, i) => (
+
+          <div
+
+            key={i}
+
+            style={{
+
+              background: msg.role === "user" ? "#333" : "#111",
+
+              padding: 12,
+
+              borderRadius: 10,
+
+              marginBottom: 10
+
+            }}
+
+          >
+
+            {msg.content}
+
+          </div>
+
+        ))}
+
+      </div>
+
+      <input
+
+        value={input}
+
+        onChange={(e) => setInput(e.target.value)}
+
+        placeholder="Speak your thoughts..."
+
+        style={{
+
+          width: "100%",
+
+          padding: 12,
+
+          borderRadius: 8,
+
+          border: "none",
+
+          marginBottom: 10
+
+        }}
+
+      />
+
+      <button
+
+        onClick={sendMessage}
+
+        style={{
+
+          background: "purple",
+
+          color: "white",
+
+          padding: 12,
+
+          border: "none",
+
+          borderRadius: 8
+
+        }}
+
+      >
+
+        Talk
+
+      </button>
+
+    </div>
+
+  );
+
+}
