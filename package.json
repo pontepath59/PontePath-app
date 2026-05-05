@@ -4,13 +4,25 @@
 
   "private": true,
 
-  "scripts": {
+  const express = require("express");
 
-    "build": "next build",
+const app = express();
 
-    "start": "next start"
+app.get("/", (req, res) => {
 
-  },
+  res.send("PontePath is LIVE 🚀");
+
+});
+
+const PORT = process.env.PORT || 3000;
+
+app.listen(PORT, "0.0.0.0", () => {
+
+  console.log("Server running on port " + PORT);
+
+});
+
+  
 
   "dependencies": {
 
